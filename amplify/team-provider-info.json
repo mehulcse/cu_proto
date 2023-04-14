@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cuproto-dev-111308-authRole",
+      "UnauthRoleArn": "arn:aws:iam::594364342306:role/amplify-cuproto-dev-111308-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::594364342306:role/amplify-cuproto-dev-111308-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-cuproto-dev-111308-deployment",
+      "UnauthRoleName": "amplify-cuproto-dev-111308-unauthRole",
+      "StackName": "amplify-cuproto-dev-111308",
+      "StackId": "arn:aws:cloudformation:us-west-2:594364342306:stack/amplify-cuproto-dev-111308/ec6048a0-d43d-11ed-a46f-0a3757bbe79f",
+      "AmplifyAppId": "d3ltrnm6o6w7id"
+    },
+    "categories": {
+      "api": {
+        "cuProto": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+enum AccountType {
+	SHARED
+	LOAN
+}
+
+type Account
+@model
+@auth (rules: [{ allow: public, operations: [create, delete, read, update]}])
+{
+	id: ID!
+	title: String!
+	type: AccountType!
+	accountNumber: String!
+	balance: Float!
+	due: Float
+#	transactions: [Transaction] @hasMany (fields: ["id"])
+}
+
+#type Transaction @model {
+#	id: ID!
+#	amount: Float!
+#	date: AWSDateTime!
+#	description: String!
+#	account: Account! @belongsTo (fields: ["accountID"])
+#	accountID: ID! @index(name: "byAccount")
+#}
+
+type Organization @model
+@auth (rules: [{ allow: public, operations: [create, delete, read, update]}])
+{
+	id: ID!
+	name: String!
+}
+
+enum Page {
+	ACCOUNTS
+	ACCOUNT
+	TRANSACTIONS
+	DEPOSITS
+	SUPPORT
+	MENU
+}
+
+enum FieldType {
+	MENU
+	LIST
+	TEXT
+}
+
+type Localization
+@model
+@auth (rules: [{ allow: public, operations: [create, delete, read, update]}])
+{
+	id: ID!
+	locale: String!
+	label: String!
+	key: String!
+	is_default: Boolean!
+	order: Int
+	page_name: Page!
+	field_type: FieldType!
+	icon: String
+	organization_id: ID @index(name: "byOrganization")
+}
+
+enum ThemeType {
+	DARK
+	LIGHT
+}
+
+type Theme @model
+@auth (rules: [{ allow: public, operations: [create, delete, read, update]}])
+{
+	id: ID!
+	mode: ThemeType!
+	bottom_bar_color: String!
+	scaffold_bg_color: String!
+	app_bar_color: String!
+	primary_color: String!
+	black_color: String!
+	white_color: String!
+	grey_color: String!
+	red_color: String!
+	green_color: String!
+	orange_color: String!
+	organization_id: ID! @index(name: "byOrganization")
+}
