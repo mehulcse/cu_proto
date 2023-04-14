@@ -1,11 +1,13 @@
 import {useEffect, useState} from 'react'
 import {useForm, Controller} from "react-hook-form";
+import { GraphQLQuery } from '@aws-amplify/api';
 import ColorPicker from "@/components/ColorPicker";
 import {API} from "aws-amplify";
 import {listThemes} from "@/src/graphql/queries";
 import Select from "@/components/Select";
 import {updateTheme} from "@/src/graphql/mutations";
 import Loader from "@/components/Loader";
+import {ListThemesQuery} from "@/src/API";
 
 const ThemeForm = () => {
 	const {control, handleSubmit, reset} = useForm({
@@ -25,26 +27,26 @@ const ThemeForm = () => {
 		}
 	});
 	const [themes, setThemes] = useState([]);
-	const [selectedTheme, setSelectedTheme] = useState(null);
+	const [selectedTheme, setSelectedTheme] = useState();
 	const [loading, setLoading] = useState(false);
 
 	const fetchThemes = async () => {
-		const data = await API.graphql({
+		const data = await API.graphql<GraphQLQuery<ListThemesQuery>>({
 			query: listThemes,
 			variables: {filter: {organization_id: {eq: "a724c044-a445-4779-ac1f-7b563012fa70"}}}
 		});
-		setThemes(data.data.listThemes.items);
+		setThemes(data?.data?.listThemes?.items as any);
 		reset({
-			...(data.data.listThemes?.items?.[0] || {})
+			...(data?.data?.listThemes?.items?.[0] || {})
 		})
-		setSelectedTheme(data.data.listThemes?.items?.[0]?.mode);
+		setSelectedTheme(data?.data?.listThemes?.items?.[0]?.mode as any);
 	}
 
 	useEffect(() => {
 		fetchThemes();
 	}, []);
 
-	const onSubmit = async (data) => {
+	const onSubmit = async (data: any) => {
 		setLoading(true);
 		const {createdAt, updatedAt, ...input} = data;
 		const theme = await API.graphql({
@@ -57,12 +59,14 @@ const ThemeForm = () => {
 		fetchThemes();
 	}
 
-	const handleThemeChange = (e) => {
+	const handleThemeChange = (e: any) => {
 		setSelectedTheme(e.target.value);
-		const theme = themes.find((theme) => theme.mode === e.target.value);
-		reset({
-			...theme
-		});
+		const theme = themes.find((theme: any) => theme?.mode === e.target.value);
+		if(theme) {
+			reset({
+				...(theme as Record<string, any>)
+			});
+		}
 	}
 
 	return (

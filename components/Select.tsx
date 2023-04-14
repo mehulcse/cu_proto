@@ -4,7 +4,7 @@ type Option = Record<string, any>;
 
 type SelectProps = {
 	options: Option[];
-	value: string;
+	value?: string;
 	onChange: (e: any) => void;
 	labelKey: keyof Option;
 	valueKey: keyof Option;
