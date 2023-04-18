@@ -145,6 +145,7 @@ export const onCreateTheme = /* GraphQL */ `
     onCreateTheme(filter: $filter) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
@@ -166,6 +167,7 @@ export const onUpdateTheme = /* GraphQL */ `
     onUpdateTheme(filter: $filter) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
@@ -187,6 +189,7 @@ export const onDeleteTheme = /* GraphQL */ `
     onDeleteTheme(filter: $filter) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color

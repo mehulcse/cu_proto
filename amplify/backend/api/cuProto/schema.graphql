@@ -73,6 +73,7 @@ type Theme @model
 {
 	id: ID!
 	mode: ThemeType!
+	is_default: Boolean!
 	bottom_bar_color: String!
 	scaffold_bg_color: String!
 	app_bar_color: String!

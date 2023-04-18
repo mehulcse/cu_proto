@@ -112,6 +112,7 @@ export const getTheme = /* GraphQL */ `
     getTheme(id: $id) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
@@ -138,6 +139,7 @@ export const listThemes = /* GraphQL */ `
       items {
         id
         mode
+        is_default
         bottom_bar_color
         scaffold_bg_color
         app_bar_color

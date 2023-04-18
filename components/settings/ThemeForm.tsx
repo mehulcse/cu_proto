@@ -8,11 +8,13 @@ import Select from "@/components/Select";
 import {updateTheme} from "@/src/graphql/mutations";
 import Loader from "@/components/Loader";
 import {ListThemesQuery} from "@/src/API";
+import Checkbox from "@/components/Checkbox";
 
 const ThemeForm = () => {
 	const {control, handleSubmit, reset} = useForm({
 		defaultValues: {
 			"mode": "DARK",
+			is_default: false,
 			"bottom_bar_color": "",
 			"scaffold_bg_color": "",
 			"app_bar_color": "",
@@ -89,6 +91,15 @@ const ThemeForm = () => {
 								<Select options={themes || []} labelKey={"mode"} valueKey={"mode"} value={selectedTheme}
 								        onChange={handleThemeChange}/>
 							</div>
+						</div>
+						<div className="col-span-full">
+							<Controller
+								name="is_default"
+								control={control}
+								render={({field: {onChange, value}}) => (
+									<Checkbox label={"Set as default"} checked={value || false} onChange={onChange} />
+								)}
+							/>
 						</div>
 						<div className="col-span-3">
 							<label className="block text-sm font-medium leading-6 text-white">

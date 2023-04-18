@@ -163,6 +163,7 @@ export const createTheme = /* GraphQL */ `
     createTheme(input: $input, condition: $condition) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
@@ -187,6 +188,7 @@ export const updateTheme = /* GraphQL */ `
     updateTheme(input: $input, condition: $condition) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
@@ -211,6 +213,7 @@ export const deleteTheme = /* GraphQL */ `
     deleteTheme(input: $input, condition: $condition) {
       id
       mode
+      is_default
       bottom_bar_color
       scaffold_bg_color
       app_bar_color
